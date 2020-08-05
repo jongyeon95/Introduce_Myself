@@ -2,6 +2,7 @@ package com.jongyeon.introduce.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -10,15 +11,19 @@ import java.time.LocalDateTime;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 @Builder
 public class BasicInformation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
 
     @Column(nullable=false)
-    private String name;
+    private String krName;
+
+    @Column(nullable=false)
+    private String engName;
 
     @Column(nullable=false)
     private String address;
