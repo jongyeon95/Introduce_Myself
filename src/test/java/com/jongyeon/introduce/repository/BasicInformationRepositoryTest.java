@@ -26,7 +26,7 @@ public class BasicInformationRepositoryTest {
         String content="업로드 테스트";
         LocalDateTime createdTime=LocalDateTime.now();
         basicInformationRepository.save(new BasicInformation().builder()
-                .name(name)
+                .krName(name)
                 .address(address)
                 .content(content)
                 .email(email)

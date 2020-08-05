@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Resume - Start Bootstrap Theme</title>
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+    <title>채용해주세요</title>
+    <link rel="icon" type="image/x-icon" href="assets/img/heart_icon.ico" />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
@@ -42,15 +42,16 @@
     <!-- About-->
     <section class="resume-section" id="about">
         <div class="resume-section-content">
-            <h1 class="mb-0">
-                <span class="text-primary" th:text="${basic.getEngName()}"></span>
-                <span class="text-primary" th:text="${basic.getKrName()}"></span>
-            </h1>
-            <div class="subheading mb-5" th:text="${basic.getAddress()}">
+            <h2 class="mb-2">
+                <span class="text-dark"  th:text="${basic.getKrName()}"></span>
+                <span class="text-primary small" th:text="${basic.getEngName()}"></span>
 
-                <a th:href="${basic.getEmail()}">name@email.com</a>
+            </h2>
+            <div class="subheading mb-5">
+                <a th:text="'주소 :'+${basic.getAddress()}"></a><br>
+                <a th:text="${basic.getEmail()}"></a>
             </div>
-            <p class="lead mb-5">I am experienced in leveraging agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</p>
+            <p class="lead mb-5" th:text="${basic.getContent()}">내용 없음</p>
             <div class="social-icons">
                 <a class="social-icon" href="https://github.com/jongyeon95"><i class="fab fa-github"></i></a>
                 <a class="social-icon" href="https://coooding.tistory.com/"><i class="fas fa-blog"></i></a>
