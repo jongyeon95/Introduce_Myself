@@ -61,6 +61,7 @@
 
 
     <hr class="m-0" />
+
     <!-- 경력-->
     <section class="resume-section" id="experience">
         <div class="resume-section-content">
@@ -83,14 +84,18 @@
     <section class="resume-section" id="education">
         <div class="resume-section-content">
             <h2 class="mb-5">학력사항</h2>
-            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+
+            <div class="d-flex flex-column flex-md-row justify-content-between mb-5" th:each="eduList : ${eduList}">
                 <div class="flex-grow-1">
-                    <h3 class="mb-0">University of Colorado Boulder</h3>
-                    <div class="subheading mb-3">Bachelor of Science</div>
-                    <div>Computer Science - Web Development Track</div>
-                    <p>GPA: 3.23</p>
+                    <h3 class="mb-0" th:text="${eduList.getName()}"></h3>
+                    <span class="text-primary" th:text="${eduList.getStartTime()}+'~'">August 2006 - May 2010</span>
+                    <span class="text-primary" th:text="${eduList.getEndTime()}!=null ? ${eduList.getEndTime()} : ' '"></span>
+                    <div class="subheading mb-3" th:text="${eduList.getGrade()}!=null ? ${eduList.getGrade()} : ' '"></div>
+                    <div th:text="${eduList.getMajor()}!=null ? '전공: '+${eduList.getMajor()} : ' '"> </div>
+                    <p th:text="${eduList.getGpa()}!=null ? '학점: '+${eduList.getGpa()} : ' '"></p>
                 </div>
-                <div class="flex-shrink-0"><span class="text-primary">August 2006 - May 2010</span></div>
+                <div class="flex-shrink-0">
+                    </div>
             </div>
 
         </div>

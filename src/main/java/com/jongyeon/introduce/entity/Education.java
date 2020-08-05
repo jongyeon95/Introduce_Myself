@@ -2,6 +2,7 @@ package com.jongyeon.introduce.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 @Builder
 public class Education {
     @Id
@@ -20,8 +22,14 @@ public class Education {
     @Column(nullable=false)
     private String name;
 
-    @Column(nullable=false)
     private String major;
+
+    private String grade;
+
+    @Column(nullable=false)
+    private String status;
+
+    private String gpa;
 
     @Column(nullable=false)
     private LocalDate startTime;
