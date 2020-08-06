@@ -1,14 +1,14 @@
 package com.jongyeon.introduce.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -26,6 +26,9 @@ public class Certificate {
 
     @Column(nullable=false)
     private  String issuingAgency;
+
+    @Column(nullable=false)
+    private String category;
 
     @Column(nullable=false)
     private LocalDate takeTime;
