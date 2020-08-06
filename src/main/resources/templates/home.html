@@ -146,14 +146,44 @@
     <!-- Awards-->
     <section class="resume-section" id="awards">
         <div class="resume-section-content">
-            <h2 class="mb-5">Awards & Certifications</h2>
+            <h2 class="mb-5">자격 및 어학</h2>
             <ul class="fa-ul mb-0">
-                <li>
-                    <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                    Google Analytics Certified Developer
+                <h3 class="mb-2">자격증</h3>
+                <li th:each="caList : ${certificateA}">
+
+                <div class="mb-2">
+                    <span class="text-primary font-weight-bold" > 자격명: </span>
+                    <span class="text-dark" th:text="${caList.getName()}"></span><br>
+                    <span class="text-primary font-weight-bold" > 등 급: </span>
+                    <span class="text-dark" th:text="${caList.getClassName()}"></span><br>
+                    <span class="text-primary font-weight-bold" > 취득일: </span>
+                    <span class="text-dark" th:text="${caList.getTakeTime()}"></span><br>
+                    <span class="text-primary font-weight-bold" >발행기간: </span>
+                    <span class="text-dark" th:text="${caList.getIssuingAgency()}"></span><br>
+
+                </div><br>
+
+                </li>
+            </ul>
+            <ul class="fa-ul mb-0">
+                <h3 class="mb-2">어학</h3>
+                <li th:each="cbList : ${certificateB}">
+
+                    <div class="mb-2">
+                        <span class="text-primary font-weight-bold" > 어학명: </span>
+                        <span class="text-dark" th:text="${cbList.getName()}"></span><br>
+                        <span class="text-primary font-weight-bold" > 등 급: </span>
+                        <span class="text-dark" th:text="${cbList.getClassName()}"></span><br>
+                        <span class="text-primary font-weight-bold" > 취득일: </span>
+                        <span class="text-dark" th:text="${cbList.getTakeTime()}"></span><br>
+                        <span class="text-primary font-weight-bold" >발행기간: </span>
+                        <span class="text-dark" th:text="${cbList.getIssuingAgency()}"></span><br>
+                    </div><br>
+
                 </li>
             </ul>
         </div>
+
     </section>
 </div>
 <!-- Bootstrap core JS-->

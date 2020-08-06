@@ -56,6 +56,10 @@ public class PortfolioService {
         certificateRepository.save(certificate);
     }
 
+    public List<Certificate> readCertificates(String s){
+        return certificateRepository.findAllByCategoryIsOrderByTakeTime(s);
+    }
+
 
 
 }
