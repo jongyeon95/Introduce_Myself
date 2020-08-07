@@ -30,7 +30,7 @@ public class Certificate {
     @Column(nullable=false)
     private String category;
 
-    @Column(nullable=false)
+
     private LocalDate takeTime;
 
     @Column(nullable=false)

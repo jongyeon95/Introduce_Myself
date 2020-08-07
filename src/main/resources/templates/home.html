@@ -66,13 +66,18 @@
     <section class="resume-section" id="experience">
         <div class="resume-section-content">
             <h2 class="mb-5">경력</h2>
-            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+            <div class="d-flex flex-column flex-md-row justify-content-between mb-5" th:if="${#lists.size(careers)}>0" th:each="careers : ${careers}">
                 <div class="flex-grow-1">
-                    <h3 class="mb-0">Senior Web Developer</h3>
-                    <div class="subheading mb-3">Intelitec Solutions</div>
-                    <p>Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.</p>
+                    <h3 class="mb-0" th:text="${careers.getCompanyName()}">회사명</h3>
+                    <div class="subheading mb-3" th:text="${careers.getDuty()}" >직무</div>
                 </div>
-                <div class="flex-shrink-0"><span class="text-primary">March 2013 - Present</span></div>
+                <div class="flex-shrink-0">
+                    <span class="text-primary" th:text="${careers.getStartTime()} +' ~'"></span>
+                    <span class="text-primary" th:text="${careers.getEndTime()}"></span>
+                </div>
+            </div>
+            <div class="d-flex flex-column flex-md-row justify-content-between mb-5" th:unless="${#lists.size(careers)}>0">
+                <h3 class="mb-2 text-dark">신입 개발자</h3>
             </div>
 
         </div>
@@ -108,23 +113,9 @@
             <h2 class="mb-5">Skills</h2>
             <div class="subheading mb-3">Programming Languages & Tools</div>
             <!-- 프로래밍 스킬 넣을 곳-->
-            <div class="subheading mb-3">Workflow</div>
             <ul class="fa-ul mb-0">
-                <li>
-                    <span class="fa-li"><i class="fas fa-check"></i></span>
-                    Mobile-First, Responsive Design
-                </li>
-                <li>
-                    <span class="fa-li"><i class="fas fa-check"></i></span>
-                    Cross Browser Testing & Debugging
-                </li>
-                <li>
-                    <span class="fa-li"><i class="fas fa-check"></i></span>
-                    Cross Functional Teams
-                </li>
-                <li>
-                    <span class="fa-li"><i class="fas fa-check"></i></span>
-                    Agile Development & Scrum
+                <li th:each=" SkillList : ${skills}">
+                    <span class="fa-li" th:text="${SkillList.getName()}"></span><br>
                 </li>
             </ul>
         </div>
@@ -147,7 +138,7 @@
     <section class="resume-section" id="awards">
         <div class="resume-section-content">
             <h2 class="mb-5">자격 및 어학</h2>
-            <ul class="fa-ul mb-0">
+            <ul class="fa-ul mb-5">
                 <h3 class="mb-2">자격증</h3>
                 <li th:each="caList : ${certificateA}">
 
@@ -165,7 +156,7 @@
 
                 </li>
             </ul>
-            <ul class="fa-ul mb-0">
+            <ul class="fa-ul mb-5">
                 <h3 class="mb-2">어학</h3>
                 <li th:each="cbList : ${certificateB}">
 
@@ -178,6 +169,22 @@
                         <span class="text-dark" th:text="${cbList.getTakeTime()}"></span><br>
                         <span class="text-primary font-weight-bold" >발행기간: </span>
                         <span class="text-dark" th:text="${cbList.getIssuingAgency()}"></span><br>
+                    </div><br>
+
+                </li>
+            </ul>
+
+            <ul class="fa-ul mb-5">
+                <h3 class="mb-2">취득 준비 중</h3>
+                <li th:each="ccList : ${certificateC}">
+
+                    <div class="mb-2">
+                        <span class="text-primary font-weight-bold" > 자격/어학명: </span>
+                        <span class="text-dark" th:text="${ccList.getName()}"></span><br>
+                        <span class="text-primary font-weight-bold" > 등 급: </span>
+                        <span class="text-dark" th:text="${ccList.getClassName()}"></span><br>
+                        <span class="text-primary font-weight-bold" >발행기간: </span>
+                        <span class="text-dark" th:text="${ccList.getIssuingAgency()}"></span><br>
                     </div><br>
 
                 </li>

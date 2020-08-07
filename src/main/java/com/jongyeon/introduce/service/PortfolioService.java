@@ -1,12 +1,8 @@
 package com.jongyeon.introduce.service;
 
 import com.jongyeon.introduce.dto.CertificateDto;
-import com.jongyeon.introduce.entity.BasicInformation;
-import com.jongyeon.introduce.entity.Certificate;
-import com.jongyeon.introduce.entity.Education;
-import com.jongyeon.introduce.repository.BasicInformationRepository;
-import com.jongyeon.introduce.repository.CertificateRepository;
-import com.jongyeon.introduce.repository.EducationRepository;
+import com.jongyeon.introduce.entity.*;
+import com.jongyeon.introduce.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +18,10 @@ public class PortfolioService {
     private EducationRepository educationRepository;
     @Autowired
     private CertificateRepository certificateRepository;
+    @Autowired
+    private SkillsRepository skillsRepository;
+    @Autowired
+    private CareerRepository careerRepository;
 
     public BasicInformation returnBasicInformation(){
         BasicInformation b=basicInformationRepository.getOne(1L);
@@ -59,6 +59,12 @@ public class PortfolioService {
     public List<Certificate> readCertificates(String s){
         return certificateRepository.findAllByCategoryIsOrderByTakeTime(s);
     }
+
+    public List<Skills> readSkills(){
+        return skillsRepository.findAll();
+    }
+
+    public List<Career> readCareers(){return careerRepository.findAll();}
 
 
 

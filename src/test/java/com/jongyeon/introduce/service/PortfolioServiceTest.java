@@ -36,11 +36,10 @@ public class PortfolioServiceTest {
     public void insertCertificateTest(){
         CertificateDto certificateDto=new CertificateDto()
                 .builder()
-                .name("Opic")
-                .className("IM2")
-                .issuingAgency("Opic")
-                .takeTime(LocalDate.of(2020,1,22))
-                .category("어학")
+                .name("SQLD")
+                .className("국가공인자격")
+                .issuingAgency("과학기술정보통신부")
+                .category("취득준비중")
                 .build();
         portfolioService.insertCertificate(certificateDto);
 
