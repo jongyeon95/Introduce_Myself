@@ -24,6 +24,8 @@ public class homeController {
     public String home(Model model, HttpServletRequest request){
         log.info("homepage");
         log.info("who is connect!:" +request.getRemoteAddr());
+        portfolioService.ViewCountUp();
+
         BasicInformation b=portfolioService.returnBasicInformation();
         List<Education> eList=portfolioService.returnEducationList();
         List<Certificate> ca = portfolioService.readCertificates("자격");
@@ -31,6 +33,7 @@ public class homeController {
         List<Certificate> cc = portfolioService.readCertificates("취득준비중");
         List<Skills> skills = portfolioService.readSkills();
         List<Career> careers =portfolioService.readCareers();
+
         model.addAttribute("certificateA",ca);
         model.addAttribute("certificateB",cb);
         model.addAttribute("certificateC",cc);
@@ -38,6 +41,7 @@ public class homeController {
         model.addAttribute("eduList",eList);
         model.addAttribute("skills",skills);
         model.addAttribute("careers",careers);
+
 
 
         return "home";

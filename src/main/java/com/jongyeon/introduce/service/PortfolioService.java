@@ -6,6 +6,7 @@ import com.jongyeon.introduce.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -22,6 +23,8 @@ public class PortfolioService {
     private SkillsRepository skillsRepository;
     @Autowired
     private CareerRepository careerRepository;
+    @Autowired
+    private ViewCountRepository viewCountRepository;
 
     public BasicInformation returnBasicInformation(){
         BasicInformation b=basicInformationRepository.getOne(1L);
@@ -65,6 +68,24 @@ public class PortfolioService {
     }
 
     public List<Career> readCareers(){return careerRepository.findAll();}
+
+    public void ViewCountUp(){
+        LocalDate now =LocalDate.now();
+        Optional<ViewCount> ld=viewCountRepository.findByDateIs(now);
+        if(ld.isPresent()){
+            ld.get().setTodayCnt(ld.get().getTodayCnt()+1);
+            viewCountRepository.save(ld.get());
+
+        }
+        else{
+            LocalDate localDate=LocalDate.now();
+            ViewCount v= new ViewCount().builder().date(localDate).todayCnt(1L).build();
+            viewCountRepository.save(v);
+
+        }
+
+
+    }
 
 
 
