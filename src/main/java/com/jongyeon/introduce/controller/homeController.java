@@ -48,4 +48,14 @@ public class homeController {
 
     }
 
+    @GetMapping("/admin/test")
+    public String test(){
+        return"test";
+    }
+
+    @GetMapping("/user/login")
+    public String login(){
+        return"login";
+    }
+
 }
