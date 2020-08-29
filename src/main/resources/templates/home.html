@@ -36,6 +36,7 @@
             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#awards">Awards</a></li>
         </ul>
     </div>
+
     <div class="mb-3">
         <form class="form-inline my-2 my-lg-0" form-method="post" th:action="@{/user/logout}">
             <button sec:authorize="isAuthenticated()" th:href="@{/user/logout}" class="btn btn-outline-danger my-2 my-sm-0 btn-sm" type="submit">Logout</button>
@@ -47,8 +48,12 @@
             <button sec:authorize="isAnonymous()" class="btn btn-outline-info my-2 my-sm-0 btn-sm" type="submit">Login</button>
         </form>
     </div>
-    <div class="mb-3">
-        <span>1</span> <span>2</span> <span>3</span>
+    <div class="mb-3 font-weight-bold">
+        <span class="text-dark" th:text="${viewCnt[0]}">Total</span>
+        <span class="text-dark">/</span>
+        <span class="text-success" th:text="${viewCnt[1]}">Yesterday</span>
+        <span class="text-dark">/</span>
+        <span class="text-danger" th:text="${viewCnt[2]}">Today</span>
     </div>
 </nav>
 <!-- Page Content-->
@@ -70,6 +75,7 @@
                 <a class="social-icon" href="https://github.com/jongyeon95"><i class="fab fa-github"></i></a>
                 <a class="social-icon" href="https://coooding.tistory.com/"><i class="fas fa-blog"></i></a>
             </div>
+            <button sec:authorize="isAuthenticated()" onclick="location.href='/admin/test'" class="btn btn-outline-info my-2 my-sm-2 btn-sm" type="submit">수정하기</button>
         </div>
     </section>
 
