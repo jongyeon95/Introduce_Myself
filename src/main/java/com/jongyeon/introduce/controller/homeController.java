@@ -2,6 +2,7 @@ package com.jongyeon.introduce.controller;
 
 import com.jongyeon.introduce.entity.*;
 import com.jongyeon.introduce.service.PortfolioService;
+import com.jongyeon.introduce.service.VisitedCountService;
 import jdk.internal.org.jline.utils.Log;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +21,8 @@ public class homeController {
 
     @Autowired
     private PortfolioService portfolioService;
+    @Autowired
+    private VisitedCountService visitedCountService;
 
     @GetMapping("/")
     public String home(Model model, HttpServletRequest request){
@@ -33,6 +37,9 @@ public class homeController {
         List<Certificate> cc = portfolioService.readCertificates("취득준비중");
         List<Skills> skills = portfolioService.readSkills();
         List<Career> careers =portfolioService.readCareers();
+        List<Integer> viewCountList=visitedCountService.viewCount();
+
+
 
         model.addAttribute("certificateA",ca);
         model.addAttribute("certificateB",cb);
@@ -41,6 +48,7 @@ public class homeController {
         model.addAttribute("eduList",eList);
         model.addAttribute("skills",skills);
         model.addAttribute("careers",careers);
+        model.addAttribute("viewCnt",viewCountList);
 
         return "home";
 
