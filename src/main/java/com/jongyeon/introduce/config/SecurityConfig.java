@@ -25,11 +25,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/**").permitAll()
-        .and() // 로그인 설정
-            .formLogin()
-            .loginPage("/user/login")
-            .defaultSuccessUrl("/")
-            .permitAll()
+                .and()
+                .csrf()
+                .and() // 로그인 설정
+                .formLogin()
+                .loginPage("/user/login")
+                .defaultSuccessUrl("/")
+                .permitAll()
                 .and() // 로그아웃 설정
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
