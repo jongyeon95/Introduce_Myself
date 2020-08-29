@@ -42,8 +42,6 @@ public class homeController {
         model.addAttribute("skills",skills);
         model.addAttribute("careers",careers);
 
-
-
         return "home";
 
     }
