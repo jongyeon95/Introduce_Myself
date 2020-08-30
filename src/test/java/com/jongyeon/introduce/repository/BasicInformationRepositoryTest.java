@@ -35,5 +35,14 @@ public class BasicInformationRepositoryTest {
 
     }
 
+    @Test
+    public void update(){
+        BasicInformation basicInformation=basicInformationRepository.findAll().get(0);
+        String content="update test";
+        LocalDateTime updatedTime=LocalDateTime.now();
+        basicInformation.setContent(content);
+        basicInformation.setUpdatedTime(updatedTime);
+        basicInformationRepository.save(basicInformation);
+    }
 
 }

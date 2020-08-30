@@ -51,23 +51,25 @@
     <!-- About-->
     <section class="resume-section" id="about">
         <div class="resume-section-content">
-            <form>
+            <form enctype='application/json' charset="utf-8" action="/admin/update/basic" method="POST" id="updateBasic">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                <input type="hidden" th:name="idx" th:value="${basic.getId()}" />
                 <h3 class="mb-2">
-                   한국 성명: <input type = "text" name="KrName" th:value="${basic.getKrName()}"/><br>
-                    영문 성명: <input type = "text" name="EngName" th:value="${basic.getEngName()}"/><br>
+                   한국 성명: <input type = "text" name="krName" th:value="${basic.getKrName()}"/><br>
+                    영문 성명: <input type = "text" name="engName" th:value="${basic.getEngName()}"/><br>
                 </h3>
                 <div class="subheading mb-5">
-                    주소: <input type = "text" name="Address" th:value="${basic.getAddress()}"/><br>
-                    이메일: <input type="email" name="Email" th:value="${basic.getEmail()}"/><br>
+                    주소: <input type = "text" name="address" th:value="${basic.getAddress()}"/><br>
+                    이메일: <input type="email" name="email" th:value="${basic.getEmail()}"/><br>
 
                 </div>
-                <textarea name="Content"  cols = "50" rows = "5" th:text="${basic.getContent()}" > </textarea>
+                <textarea name="content"  cols = "50" rows = "5" th:text="${basic.getContent()}" > </textarea>
 
                 <div class="social-icons">
                     <a class="social-icon" href="https://github.com/jongyeon95"><i class="fab fa-github"></i></a>
                     <a class="social-icon" href="https://coooding.tistory.com/"><i class="fas fa-blog"></i></a>
                 </div>
-                <button sec:authorize="isAuthenticated()" onclick="location.href='/admin/test'" class="btn btn-outline-info my-2 my-sm-2 btn-sm" type="submit">수정하기</button>
+                <button sec:authorize="isAuthenticated()" class="btn btn-outline-info my-2 my-sm-2 btn-sm" type="submit" form="updateBasic">수정하기</button>
             </form>
 
         </div>
