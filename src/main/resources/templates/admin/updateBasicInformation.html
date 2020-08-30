@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>채용해주세요</title>
+    <link rel="icon" type="image/x-icon" href="/assets/img/heart_icon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/css/styles.css" rel="stylesheet" />
+</head>
+
+<body id="page-top">
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+    <a class="navbar-brand js-scroll-trigger" href="#page-top">
+        <span class="d-block d-lg-none">Clarence Taylor</span>
+        <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="/assets/img/profile.jpg" alt="" /></span>
+    </a>
+
+    <div class="mb-3">
+        <form class="form-inline my-2 my-lg-0" form-method="post" th:action="@{/user/logout}">
+            <button sec:authorize="isAuthenticated()" th:href="@{/user/logout}" class="btn btn-outline-danger my-2 my-sm-0 btn-sm" type="submit">Logout</button>
+        </form>
+        <form class="form-inline my-2 my-lg-0" form-method="post" th:action="@{/admin/test}">
+            <button sec:authorize="isAuthenticated()" th:href="@{/admin/test}" class="btn btn-outline-danger my-2 my-sm-0 btn-sm" type="submit">Admin</button>
+        </form>
+        <form class="form-inline my-2 my-lg-0" form-method="post" th:action="@{/user/login}">
+            <button sec:authorize="isAnonymous()" class="btn btn-outline-info my-2 my-sm-0 btn-sm" type="submit">Login</button>
+        </form>
+    </div>
+
+    <div class="mb-3 font-weight-bold">
+        <span class="text-dark" th:text="${viewCnt[0]}">Total</span>
+        <span class="text-dark">/</span>
+        <span class="text-success" th:text="${viewCnt[1]}">Yesterday</span>
+        <span class="text-dark">/</span>
+        <span class="text-danger" th:text="${viewCnt[2]}">Today</span>
+    </div>
+</nav>
+<!-- Page Content-->
+<div class="container-fluid p-0">
+    <!-- About-->
+    <section class="resume-section" id="about">
+        <div class="resume-section-content">
+            <form>
+                <h3 class="mb-2">
+                   한국 성명: <input type = "text" name="KrName" th:value="${basic.getKrName()}"/><br>
+                    영문 성명: <input type = "text" name="EngName" th:value="${basic.getEngName()}"/><br>
+                </h3>
+                <div class="subheading mb-5">
+                    주소: <input type = "text" name="Address" th:value="${basic.getAddress()}"/><br>
+                    이메일: <input type="email" name="Email" th:value="${basic.getEmail()}"/><br>
+
+                </div>
+                <textarea name="Content"  cols = "50" rows = "5" th:text="${basic.getContent()}" > </textarea>
+
+                <div class="social-icons">
+                    <a class="social-icon" href="https://github.com/jongyeon95"><i class="fab fa-github"></i></a>
+                    <a class="social-icon" href="https://coooding.tistory.com/"><i class="fas fa-blog"></i></a>
+                </div>
+                <button sec:authorize="isAuthenticated()" onclick="location.href='/admin/test'" class="btn btn-outline-info my-2 my-sm-2 btn-sm" type="submit">수정하기</button>
+            </form>
+
+        </div>
+    </section>
+
+
+</div>
+<!-- Bootstrap core JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+<!-- Third party plugin JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+<!-- Core theme JS-->
+<script src="/js/scripts.js"></script>
+</body>
+</html>
