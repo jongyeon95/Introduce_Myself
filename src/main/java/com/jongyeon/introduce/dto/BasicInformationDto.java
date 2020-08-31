@@ -18,9 +18,9 @@ public class BasicInformationDto {
 
     private long idx;
 
-    private String krName;
+    private String kr;
 
-    private String engName;
+    private String eng;
 
     private String address;
 

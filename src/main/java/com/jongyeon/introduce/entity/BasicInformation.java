@@ -1,5 +1,6 @@
 package com.jongyeon.introduce.entity;
 
+import com.jongyeon.introduce.dto.BasicInformationDto;
 import lombok.*;
 
 import javax.persistence.*;
@@ -40,6 +41,15 @@ public class BasicInformation {
     private LocalDateTime updatedTime;
 
 
+    public void setDto(BasicInformationDto dto){
+
+        this.krName=dto.getKr();
+        this.engName=dto.getEng();
+        this.address=dto.getAddress();
+        this.email=dto.getEmail();
+        this.content=dto.getContent();
+        this.updatedTime=LocalDateTime.now();
+    }
 
 
 }
