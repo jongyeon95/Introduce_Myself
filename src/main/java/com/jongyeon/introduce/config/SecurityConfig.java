@@ -25,8 +25,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/**").permitAll()
-                .and()
-                .csrf()
                 .and() // 로그인 설정
                 .formLogin()
                 .loginPage("/user/login")
@@ -36,7 +34,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
                 .logoutSuccessUrl("/")
-                .invalidateHttpSession(true);
+                .invalidateHttpSession(true)
+                .and()
+                .csrf().disable();
     }
     @Bean
     public PasswordEncoder passwordEncoder() {
