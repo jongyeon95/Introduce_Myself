@@ -136,7 +136,8 @@
             <ul class="fa-ul mb-0">
                 <li th:each=" SkillList : ${skills}">
                     <span class="fa-li" th:text="${SkillList.getName()}"></span><br>
-                    <button sec:authorize="isAuthenticated()" th:onclick="'location.href='+'\'/admin/update/skills/'+${SkillList.getId()}+'\''" class="btn btn-outline-info my-2 my-sm-2 btn-sm" type="submit">수정하기</button>                </li>
+                    <button sec:authorize="isAuthenticated()" th:onclick="'location.href='+'\'/admin/update/skills/'+${SkillList.getId()}+'\''" class="btn btn-outline-info my-2 my-sm-2 btn-sm" type="submit">수정하기</button>
+                </li>
             </ul>
         </div>
     </section>
