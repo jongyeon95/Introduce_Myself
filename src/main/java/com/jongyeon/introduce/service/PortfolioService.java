@@ -66,6 +66,7 @@ public class PortfolioService {
     public List<Skills> readSkills(){
         return skillsRepository.findAll();
     }
+    public Optional<Skills> findByIdSkills(Long id){return skillsRepository.findById(id);}
 
     public List<Career> readCareers(){return careerRepository.findAll();}
 

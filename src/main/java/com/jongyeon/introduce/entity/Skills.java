@@ -1,5 +1,6 @@
 package com.jongyeon.introduce.entity;
 
+import com.jongyeon.introduce.dto.SkillsDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,7 +18,7 @@ import java.time.LocalDateTime;
 public class Skills {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
 
     @Column(nullable=false)
     private String name;
@@ -26,4 +27,11 @@ public class Skills {
     private LocalDateTime createdTime;
 
     private LocalDateTime updatedTime;
+
+    public void setDto(SkillsDto dto){
+        this.id=dto.getIdx();
+        this.name=dto.getName();
+        this.updatedTime=LocalDateTime.now();
+
+    }
 }
