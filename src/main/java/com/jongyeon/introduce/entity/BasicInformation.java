@@ -35,6 +35,10 @@ public class BasicInformation {
     @Column(nullable=false)
     private String content;
 
+    private String githubUrl;
+
+    private String blogUrl;
+
     @Column(nullable=false)
     private LocalDateTime createdTime;
 
@@ -49,6 +53,8 @@ public class BasicInformation {
         this.email=dto.getEmail();
         this.content=dto.getContent();
         this.updatedTime=LocalDateTime.now();
+        this.githubUrl=dto.getGithubUrl();
+        this.blogUrl=dto.getBlogUrl();
     }
 
 

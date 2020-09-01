@@ -28,5 +28,9 @@ public class BasicInformationDto {
 
     private String content;
 
+    private String githubUrl;
+
+    private String blogUrl;
+
 
 }

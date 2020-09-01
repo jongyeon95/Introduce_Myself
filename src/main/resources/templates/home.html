@@ -72,8 +72,8 @@
             </div>
             <p class="lead mb-5" th:text="${basic.getContent()}">내용 없음</p>
             <div class="social-icons">
-                <a class="social-icon" href="https://github.com/jongyeon95"><i class="fab fa-github"></i></a>
-                <a class="social-icon" href="https://coooding.tistory.com/"><i class="fas fa-blog"></i></a>
+                <a class="social-icon" th:href="${basic.getGithubUrl()}"><i class="fab fa-github"></i></a>
+                <a class="social-icon" th:href="${basic.getBlogUrl()}"><i class="fas fa-blog"></i></a>
             </div>
             <button sec:authorize="isAuthenticated()" onclick="location.href='/admin/update/basic'" class="btn btn-outline-info my-2 my-sm-2 btn-sm" type="submit">수정하기</button>
         </div>

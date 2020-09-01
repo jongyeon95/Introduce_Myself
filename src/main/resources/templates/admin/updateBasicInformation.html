@@ -67,8 +67,10 @@
                 <textarea id="content"  cols = "50" rows = "5" th:text="${basic.getContent()}" > </textarea>
 
                 <div class="social-icons">
-                    <a class="social-icon" href="https://github.com/jongyeon95"><i class="fab fa-github"></i></a>
-                    <a class="social-icon" href="https://coooding.tistory.com/"><i class="fas fa-blog"></i></a>
+                    <a class="social-icon" th:href="${basic.getGithubUrl()}"><i class="fab fa-github"></i></a>
+                    <a class="social-icon" th:href="${basic.getBlogUrl()}"><i class="fas fa-blog"></i></a><br>
+                    깃허브주소: <input type = "text" id="github" th:value="${basic.getGithubUrl()}"/><br>
+                    이메일주소: <input type="text" id="blog" th:value="${basic.getBlogUrl()}"/><br>
                 </div>
 
             </form>
