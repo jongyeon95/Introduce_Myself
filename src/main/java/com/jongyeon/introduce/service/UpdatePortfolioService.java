@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -37,6 +38,21 @@ public class UpdatePortfolioService {
         }
         skills.get().setDto(skillsDto);
         skillsRepository.save(skills.get());
+        return HttpStatus.OK;
+    }
+
+    public HttpStatus SaveSkills(SkillsDto skillsDto){
+        Skills skills=new Skills().builder().name(skillsDto.getName()).createdTime(LocalDateTime.now()).updatedTime(LocalDateTime.now()).build();
+        skillsRepository.save(skills);
+        return HttpStatus.OK;
+    }
+
+    public HttpStatus DeleteSkills(Long id){
+        Optional<Skills> skills=skillsRepository.findById(id);
+        if(!skills.isPresent()){
+            return HttpStatus.OK;
+        }
+        skillsRepository.delete(skills.get());
         return HttpStatus.OK;
     }
 }

@@ -15,13 +15,12 @@ var main = {
     },
     save : function () {
         var data= {
-            idx: $('#idx').val(),
             name: $('#name').val(),
         };
 
         $.ajax({
             type: 'POST',
-            url: '/admin/update/skills',
+            url: '/admin/save/skills',
             dataType: 'json',
             contentType:'application/json; charset=utf-8',
             data: JSON.stringify(data)
@@ -59,7 +58,7 @@ var main = {
 
         $.ajax({
             type: 'DELETE',
-            url: '/admin/update/skills',
+            url: '/admin/delete/skills/'+idx,
             dataType: 'json',
             contentType:'application/json; charset=utf-8'
         }).done(function() {

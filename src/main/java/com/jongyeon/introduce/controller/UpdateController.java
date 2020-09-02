@@ -64,11 +64,39 @@ public class UpdateController {
         return "/admin/updateSkills";
     }
 
+    @GetMapping("/admin/save/skills/")
+    public String saveSkillsForm(Model model){
+
+        Optional<Skills> s= Optional.of(new Skills());
+        List<Integer> viewCountList=visitedCountService.viewCount();
+
+        model.addAttribute("skills",s);
+        model.addAttribute("viewCnt",viewCountList);
+
+        return "/admin/updateSkills";
+    }
+
     @ResponseBody
     @PutMapping("/admin/update/skills")
     public HttpStatus updateSkills(@RequestBody SkillsDto skillsDto){
 
         return updatePortfolioService.UpdateSkills(skillsDto);
     }
+    @ResponseBody
+    @PostMapping("/admin/save/skills")
+    public HttpStatus saveSkills(@RequestBody SkillsDto skillsDto){
+
+        return updatePortfolioService.SaveSkills(skillsDto);
+    }
+
+
+
+    @ResponseBody
+    @DeleteMapping("/admin/delete/skills/{idx}")
+    public HttpStatus deleteSkills(@PathVariable long idx){
+        return updatePortfolioService.DeleteSkills(idx);
+    }
+
+
 
 }

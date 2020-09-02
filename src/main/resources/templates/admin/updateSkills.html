@@ -51,21 +51,21 @@
     <!-- About-->
     <section class="resume-section" id="about">
 
-
             <div class="resume-section-content">
                 <h2 class="mb-5">Skills</h2>
                 <div class="subheading mb-3">Programming Languages & Tools</div>
                 <!-- 프로래밍 스킬 넣을 곳-->
                 <ul class="fa-ul mb-0">
-
                     <form>
                         <input type="hidden" id="idx" th:value="${skills.get().getId()}" />
                         Skill : <input type = "text" id="name" th:value="${skills.get().getName()}"/><br>
-
                     </form>
 
                 </ul>
-                <button sec:authorize="isAuthenticated()" class="btn btn-outline-info my-2 my-sm-2 btn-sm"   id="btn-update">수정하기</button>
+                <button sec:authorize="isAuthenticated()" class="btn btn-outline-info my-2 my-sm-2 btn-sm" th:if="${skills.get().getId()} != null"   id="btn-update">수정하기</button>
+                <button sec:authorize="isAuthenticated()" class="btn btn-outline-info my-2 my-sm-2 btn-sm" th:if="${skills.get().getId()} == null"  id="btn-save">추가하기</button>
+                <button sec:authorize="isAuthenticated()" class="btn btn-outline-info my-2 my-sm-2 btn-sm" th:if="${skills.get().getId()} != null"  id="btn-delete">삭제하기</button>
+
             </div>
 
     </section>
