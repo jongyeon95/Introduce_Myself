@@ -45,7 +45,9 @@ var main = {
             eng: $('#eng').val(),
             address: $('#address').val(),
             email: $('#email').val(),
-            content: $('#content').val()
+            content: $('#content').val(),
+            github : $('#githubUrl').val(),
+            blog : $('#blogUrl').val()
         };
 
 

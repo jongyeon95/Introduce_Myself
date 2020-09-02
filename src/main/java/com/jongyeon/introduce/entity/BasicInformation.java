@@ -53,8 +53,8 @@ public class BasicInformation {
         this.email=dto.getEmail();
         this.content=dto.getContent();
         this.updatedTime=LocalDateTime.now();
-        this.githubUrl=dto.getGithubUrl();
-        this.blogUrl=dto.getBlogUrl();
+        this.githubUrl=dto.getGithub();
+        this.blogUrl=dto.getBlog();
     }
 
 

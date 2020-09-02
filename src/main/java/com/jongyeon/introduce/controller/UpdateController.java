@@ -46,7 +46,7 @@ public class UpdateController {
     @ResponseBody
     @PutMapping("/admin/update/basic")
     public HttpStatus updateBasicInformation(@RequestBody BasicInformationDto basicInformationDto){
-
+        System.out.println(basicInformationDto.getGithub());
         return updatePortfolioService.UpdateBasicInformation(basicInformationDto);
     }
 
