@@ -1,8 +1,11 @@
 package com.jongyeon.introduce.service;
 
+import com.jongyeon.introduce.dto.AccountDto;
 import com.jongyeon.introduce.entity.Account;
 import com.jongyeon.introduce.repository.AccountRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -16,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
 public class AccountService implements UserDetailsService {
     @Autowired
@@ -32,15 +36,40 @@ public class AccountService implements UserDetailsService {
         return accountRepository.save(account);
     }
 
+    public boolean changeAccountInfo(AccountDto accountDto){
+        String encodePw=passwordEncoder.encode(accountDto.getPw());
+        String encodePw2=passwordEncoder.encode(accountDto.getPw());
+        String encodePw3=passwordEncoder.encode(accountDto.getPw());
+        log.info("비밀번호 해쉬 전 "+accountDto.getPw());
+        log.info("비밀번호 해쉬 후1 "+encodePw);
+        log.info("비밀번호 해쉬 후2 "+encodePw2);
+        log.info("비밀번호 해쉬 후3 "+encodePw3);
+
+        log.info("원래 비밀번호"+accountRepository.findById(accountDto.getIdx()).get().getPassword());
+        if(accountRepository.findById(accountDto.getIdx()).get().getPassword().equals(encodePw)){
+            log.info("비밀번호 맞음");
+            Optional<Account> account;
+            account=accountRepository.findById(accountDto.getIdx());
+            account.get().setEmail(accountDto.getEmail());
+            if(accountDto.getChagepw()!=null){
+                account.get().setPassword(passwordEncoder.encode(accountDto.getChagepw()));
+            }
+            log.info("저장");
+            accountRepository.save(account.get());
+
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<Account> account = accountRepository.findByUserName(username);
         if (account == null) { throw new UsernameNotFoundException(username); }
-        List<GrantedAuthority> authorites=new ArrayList<>();
-        authorites.add(new SimpleGrantedAuthority(account.get().getAuthority()));
+        List<GrantedAuthority> authorities=new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority(account.get().getAuthority()));
 
-        return new User(username, account.get().getPassword(), authorites);
-
+        return new User(username, account.get().getPassword(), authorities);
 
     }
 

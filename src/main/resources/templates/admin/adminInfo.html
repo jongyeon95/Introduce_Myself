@@ -30,9 +30,6 @@
         <form class="form-inline my-2 my-lg-0" form-method="post" th:action="@{/user/logout}">
             <button sec:authorize="isAuthenticated()" th:href="@{/user/logout}" class="btn btn-outline-danger my-2 my-sm-0 btn-sm" type="submit">Logout</button>
         </form>
-        <form class="form-inline my-2 my-lg-0" form-method="post" th:action="@{/admin/info}">
-            <button sec:authorize="isAuthenticated()" th:href="@{/admin/info}" class="btn btn-outline-danger my-2 my-sm-0 btn-sm" type="submit">Admin</button>
-        </form>
         <form class="form-inline my-2 my-lg-0" form-method="post" th:action="@{/user/login}">
             <button sec:authorize="isAnonymous()" class="btn btn-outline-info my-2 my-sm-0 btn-sm" type="submit">Login</button>
         </form>
@@ -51,22 +48,20 @@
     <!-- About-->
     <section class="resume-section" id="about">
 
-            <div class="resume-section-content">
-                <h2 class="mb-5">Skills</h2>
-                <div class="subheading mb-3">Programming Languages & Tools</div>
-                <!-- 프로래밍 스킬 넣을 곳-->
-                <ul class="fa-ul mb-0">
-                    <form>
-                        <input type="hidden" id="idx" th:value="${skills.get().getId()}" />
-                        Skill : <input type = "text" id="name" th:value="${skills.get().getName()}"/><br>
-                    </form>
+        <div class="resume-section-content">
+            <h2 class="mb-5">Skills</h2>
+            <div class="subheading mb-3">Admin INFO</div>
+            <!-- 프로래밍 스킬 넣을 곳-->
+            <ul class="fa-ul mb-0">
+                <div class="font-weight-bold">
+                    이름: <a th:text="${account.get().getUserName()}"> </a><br>
+                    이메일: <a th:text="${account.get().getEmail()}"> </a>
+                </div>
 
-                </ul>
-                <button sec:authorize="isAuthenticated()" class="btn btn-outline-info my-2 my-sm-2 btn-sm" th:if="${skills.get().getId()} != null"   id="btn-update">수정하기</button>
-                <button sec:authorize="isAuthenticated()" class="btn btn-outline-info my-2 my-sm-2 btn-sm" th:if="${skills.get().getId()} == null"  id="btn-save">추가하기</button>
-                <button sec:authorize="isAuthenticated()" class="btn btn-outline-info my-2 my-sm-2 btn-sm" th:if="${skills.get().getId()} != null"  id="btn-delete">삭제하기</button>
+            </ul>
+            <button sec:authorize="isAuthenticated()" onclick="location.href='/admin/update'" class="btn btn-outline-info my-2 my-sm-2 btn-sm" type="submit">수정하기</button>
 
-            </div>
+        </div>
 
     </section>
 
