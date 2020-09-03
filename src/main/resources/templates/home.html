@@ -70,7 +70,7 @@
                 <a th:text="'주소 :'+${basic.getAddress()}"></a><br>
                 <a th:text="${basic.getEmail()}"></a>
             </div>
-            <p class="lead mb-5" th:text="${basic.getContent()}">내용 없음</p>
+            <p class="lead mb-5" style="white-space: pre-line" th:text="${basic.getContent()}">내용 없음</p>
             <div class="social-icons">
                 <a class="social-icon" th:href="${basic.getGithubUrl()}"><i class="fab fa-github"></i></a>
                 <a class="social-icon" th:href="${basic.getBlogUrl()}"><i class="fas fa-blog"></i></a>
