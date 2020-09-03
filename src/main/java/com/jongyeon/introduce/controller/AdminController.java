@@ -21,6 +21,7 @@ public class AdminController {
 
     @Autowired
     private AccountRepository accountRepository;
+    @Autowired
     private VisitedCountService visitedCountService;
     @Autowired
     private AccountService accountService;

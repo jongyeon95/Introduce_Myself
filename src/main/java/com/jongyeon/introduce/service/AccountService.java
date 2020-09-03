@@ -37,21 +37,15 @@ public class AccountService implements UserDetailsService {
     }
 
     public boolean changeAccountInfo(AccountDto accountDto){
-        String encodePw=passwordEncoder.encode(accountDto.getPw());
-        String encodePw2=passwordEncoder.encode(accountDto.getPw());
-        String encodePw3=passwordEncoder.encode(accountDto.getPw());
-        log.info("비밀번호 해쉬 전 "+accountDto.getPw());
-        log.info("비밀번호 해쉬 후1 "+encodePw);
-        log.info("비밀번호 해쉬 후2 "+encodePw2);
-        log.info("비밀번호 해쉬 후3 "+encodePw3);
 
-        log.info("원래 비밀번호"+accountRepository.findById(accountDto.getIdx()).get().getPassword());
-        if(accountRepository.findById(accountDto.getIdx()).get().getPassword().equals(encodePw)){
+        if(passwordEncoder.matches(accountDto.getPw(),accountRepository.findById(accountDto.getIdx()).get().getPassword())) {
             log.info("비밀번호 맞음");
             Optional<Account> account;
-            account=accountRepository.findById(accountDto.getIdx());
+            account = accountRepository.findById(accountDto.getIdx());
             account.get().setEmail(accountDto.getEmail());
-            if(accountDto.getChagepw()!=null){
+            log.info(accountDto.getChagepw());
+
+            if (!accountDto.getChagepw().equals("")) {
                 account.get().setPassword(passwordEncoder.encode(accountDto.getChagepw()));
             }
             log.info("저장");
@@ -59,8 +53,9 @@ public class AccountService implements UserDetailsService {
 
             return true;
         }
-        return false;
-    }
+
+            return false;
+        }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
