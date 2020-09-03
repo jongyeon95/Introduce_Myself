@@ -26,7 +26,7 @@ public class IntroduceApplication {
 
     @Bean
     public CommandLineRunner runner(AccountRepository accountRepository, AccountService accountService) throws Exception {
-        if(!accountRepository.findByUserName("Admin").isPresent()){
+        if(accountRepository.findAllByAuthority("ROLE_ADMIN").size()<1){
             log.info("새로생성");
             Account account= accountService.createAccount("Admin","Admin");
             account.setAuthority("ROLE_ADMIN");
