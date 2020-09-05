@@ -60,7 +60,7 @@ public class AccountService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<Account> account = accountRepository.findByUserName(username);
-        if (account == null) { throw new UsernameNotFoundException(username); }
+        if (!account.isPresent()) { throw new UsernameNotFoundException(username); }
         List<GrantedAuthority> authorities=new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority(account.get().getAuthority()));
 
