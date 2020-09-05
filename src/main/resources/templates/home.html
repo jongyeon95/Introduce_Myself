@@ -3,9 +3,7 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <div th:replace="fragments/header"></div>
-<head>
 
-</head>
 
 <body id="page-top">
 <!-- Navigation-->
@@ -49,26 +47,27 @@
 <div class="container-fluid p-0">
     <!-- About-->
     <section class="resume-section" id="about">
-        <div class="resume-section-content">
-            <h2 class="mb-2">
-                <span class="text-dark"  th:text="${basic.getKrName()}"></span>
-                <span class="text-primary small" th:text="${basic.getEngName()}"></span>
+<!--        <div class="resume-section-content">-->
+<!--            <h2 class="mb-2">-->
+<!--                <span class="text-dark"  th:text="${basic.getKrName()}"></span>-->
+<!--                <span class="text-primary small" th:text="${basic.getEngName()}"></span>-->
 
-            </h2>
-            <div class="subheading mb-5">
-                <a th:text="'주소 :'+${basic.getAddress()}"></a><br>
-                <a th:text="${basic.getEmail()}"></a>
-            </div>
-            <p class="lead mb-5" style="white-space: pre-line" th:text="${basic.getContent()}">내용 없음</p>
-            <div class="social-icons">
-                <a class="social-icon" th:href="${basic.getGithubUrl()}"><i class="fab fa-github"></i></a>
-                <a class="social-icon" th:href="${basic.getBlogUrl()}"><i class="fas fa-blog"></i></a>
-            </div>
-            <button sec:authorize="isAuthenticated()" onclick="location.href='/admin/update/basic'" class="btn btn-outline-info my-2 my-sm-2 btn-sm" type="submit">수정하기</button>
-        </div>
+<!--            </h2>-->
+<!--            <div class="subheading mb-5">-->
+<!--                <a th:text="'주소 :'+${basic.getAddress()}"></a><br>-->
+<!--                <a th:text="${basic.getEmail()}"></a>-->
+<!--            </div>-->
+<!--            <p class="lead mb-5" style="white-space: pre-line" th:text="${basic.getContent()}">내용 없음</p>-->
+<!--            <div class="social-icons">-->
+<!--                <a class="social-icon" th:href="${basic.getGithubUrl()}"><i class="fab fa-github"></i></a>-->
+<!--                <a class="social-icon" th:href="${basic.getBlogUrl()}"><i class="fas fa-blog"></i></a>-->
+<!--            </div>-->
+<!--            <button sec:authorize="isAuthenticated()" onclick="location.href='/admin/update/basic'" class="btn btn-outline-info my-2 my-sm-2 btn-sm" type="submit">수정하기</button>-->
+<!--        </div>-->
+        <div id="test-basic"></div>
     </section>
 
-    <div id="include-basic"></div>
+
 
 
     <hr class="m-0" />
@@ -209,5 +208,12 @@
 
 <div th:replace="fragments/footer"></div>
 <script src="js/scripts.js"></script>
+<script type="text/javascript">
+    $(document).ready( function() {
+        $.get("/test",{},function (html) {
+            $("#test-basic").html(html);
+        })
+    });
+</script>
 </body>
 </html>
