@@ -18,7 +18,7 @@
             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Experience</a></li>
             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">Education</a></li>
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Skills</a></li>
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skill">Skills</a></li>
             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">Interests</a></li>
             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#awards">Awards</a></li>
         </ul>
@@ -47,90 +47,27 @@
 <div class="container-fluid p-0">
     <!-- About-->
     <section class="resume-section" id="about">
-<!--        <div class="resume-section-content">-->
-<!--            <h2 class="mb-2">-->
-<!--                <span class="text-dark"  th:text="${basic.getKrName()}"></span>-->
-<!--                <span class="text-primary small" th:text="${basic.getEngName()}"></span>-->
-
-<!--            </h2>-->
-<!--            <div class="subheading mb-5">-->
-<!--                <a th:text="'주소 :'+${basic.getAddress()}"></a><br>-->
-<!--                <a th:text="${basic.getEmail()}"></a>-->
-<!--            </div>-->
-<!--            <p class="lead mb-5" style="white-space: pre-line" th:text="${basic.getContent()}">내용 없음</p>-->
-<!--            <div class="social-icons">-->
-<!--                <a class="social-icon" th:href="${basic.getGithubUrl()}"><i class="fab fa-github"></i></a>-->
-<!--                <a class="social-icon" th:href="${basic.getBlogUrl()}"><i class="fas fa-blog"></i></a>-->
-<!--            </div>-->
-<!--            <button sec:authorize="isAuthenticated()" onclick="location.href='/admin/update/basic'" class="btn btn-outline-info my-2 my-sm-2 btn-sm" type="submit">수정하기</button>-->
-<!--        </div>-->
-        <div id="test-basic"></div>
+        <div id="basic-information"></div>
     </section>
 
 
-
-
     <hr class="m-0" />
-
     <!-- 경력-->
     <section class="resume-section" id="experience">
-        <div class="resume-section-content">
-            <h2 class="mb-5">경력</h2>
-            <div class="d-flex flex-column flex-md-row justify-content-between mb-5" th:if="${#lists.size(careers)}>0" th:each="careers : ${careers}">
-                <div class="flex-grow-1">
-                    <h3 class="mb-0" th:text="${careers.getCompanyName()}">회사명</h3>
-                    <div class="subheading mb-3" th:text="${careers.getDuty()}" >직무</div>
-                </div>
-                <div class="flex-shrink-0">
-                    <span class="text-primary" th:text="${careers.getStartTime()} +' ~'"></span>
-                    <span class="text-primary" th:text="${careers.getEndTime()}"></span>
-                </div>
-            </div>
-            <div class="d-flex flex-column flex-md-row justify-content-between mb-5" th:unless="${#lists.size(careers)}>0">
-                <h3 class="mb-2 text-dark">신입 개발자</h3>
-            </div>
-
-        </div>
+        <div id="careers"></div>
     </section>
 
 
     <hr class="m-0" />
     <!-- 학력-->
     <section class="resume-section" id="education">
-        <div class="resume-section-content">
-            <h2 class="mb-5">학력사항</h2>
-
-            <div class="d-flex flex-column flex-md-row justify-content-between mb-5" th:each="eduList : ${eduList}">
-                <div class="flex-grow-1">
-                    <h3 class="mb-0" th:text="${eduList.getName()}"></h3>
-                    <span class="text-primary" th:text="${eduList.getStartTime()}+'~'">August 2006 - May 2010</span>
-                    <span class="text-primary" th:text="${eduList.getEndTime()}!=null ? ${eduList.getEndTime()} : ' '"></span>
-                    <div class="subheading mb-3" th:text="${eduList.getGrade()}!=null ? ${eduList.getGrade()} : ' '"></div>
-                    <div th:text="${eduList.getMajor()}!=null ? '전공: '+${eduList.getMajor()} : ' '"> </div>
-                    <p th:text="${eduList.getGpa()}!=null ? '학점: '+${eduList.getGpa()} : ' '"></p>
-                </div>
-                <div class="flex-shrink-0">
-                    </div>
-            </div>
-
-        </div>
+        <div id="educations"></div>
     </section>
 
     <hr class="m-0" />
     <!-- Skills-->
-    <section class="resume-section" id="skills">
-        <div class="resume-section-content">
-            <h2 class="mb-5">Skills</h2>
-            <div class="subheading mb-3">Programming Languages & Tools</div>
-            <button sec:authorize="isAuthenticated()" th:onclick="'location.href='+'\'/admin/save/skills/\''" class="btn btn-outline-info my-2 my-sm-2 btn-sm" type="submit">추가하기</button>
-            <!-- 프로래밍 스킬 넣을 곳-->
-            <ul class="fa-ul mb-0">
-                <li th:each=" SkillList : ${skills}">
-                    <span class="text-black" th:text="${SkillList.getName()}"></span><br>
-                    <button sec:authorize="isAuthenticated()" th:onclick="'location.href='+'\'/admin/update/skills/'+${SkillList.getId()}+'\''" class="btn btn-outline-info my-2 my-sm-2 btn-sm" type="submit">수정하기</button>
-                </li>
-            </ul>
-        </div>
+    <section class="resume-section" id="skill">
+        <div id="skills"></div>
     </section>
 
 
@@ -148,72 +85,12 @@
 
     <!-- Awards-->
     <section class="resume-section" id="awards">
-        <div class="resume-section-content">
-            <h2 class="mb-5">자격 및 어학</h2>
-            <ul class="fa-ul mb-5">
-                <h3 class="mb-2">자격증</h3>
-                <li th:each="caList : ${certificateA}">
-
-                <div class="mb-2">
-                    <span class="text-primary font-weight-bold" > 자격명: </span>
-                    <span class="text-dark" th:text="${caList.getName()}"></span><br>
-                    <span class="text-primary font-weight-bold" > 등 급: </span>
-                    <span class="text-dark" th:text="${caList.getClassName()}"></span><br>
-                    <span class="text-primary font-weight-bold" > 취득일: </span>
-                    <span class="text-dark" th:text="${caList.getTakeTime()}"></span><br>
-                    <span class="text-primary font-weight-bold" >발행기간: </span>
-                    <span class="text-dark" th:text="${caList.getIssuingAgency()}"></span><br>
-
-                </div><br>
-
-                </li>
-            </ul>
-            <ul class="fa-ul mb-5">
-                <h3 class="mb-2">어학</h3>
-                <li th:each="cbList : ${certificateB}">
-
-                    <div class="mb-2">
-                        <span class="text-primary font-weight-bold" > 어학명: </span>
-                        <span class="text-dark" th:text="${cbList.getName()}"></span><br>
-                        <span class="text-primary font-weight-bold" > 등 급: </span>
-                        <span class="text-dark" th:text="${cbList.getClassName()}"></span><br>
-                        <span class="text-primary font-weight-bold" > 취득일: </span>
-                        <span class="text-dark" th:text="${cbList.getTakeTime()}"></span><br>
-                        <span class="text-primary font-weight-bold" >발행기간: </span>
-                        <span class="text-dark" th:text="${cbList.getIssuingAgency()}"></span><br>
-                    </div><br>
-
-                </li>
-            </ul>
-
-            <ul class="fa-ul mb-5">
-                <h3 class="mb-2">취득 준비 중</h3>
-                <li th:each="ccList : ${certificateC}">
-
-                    <div class="mb-2">
-                        <span class="text-primary font-weight-bold" > 자격/어학명: </span>
-                        <span class="text-dark" th:text="${ccList.getName()}"></span><br>
-                        <span class="text-primary font-weight-bold" > 등 급: </span>
-                        <span class="text-dark" th:text="${ccList.getClassName()}"></span><br>
-                        <span class="text-primary font-weight-bold" >발행기간: </span>
-                        <span class="text-dark" th:text="${ccList.getIssuingAgency()}"></span><br>
-                    </div><br>
-
-                </li>
-            </ul>
-        </div>
-
+        <div id="certificates"></div>
     </section>
 </div>
 
 <div th:replace="fragments/footer"></div>
 <script src="js/scripts.js"></script>
-<script type="text/javascript">
-    $(document).ready( function() {
-        $.get("/test",{},function (html) {
-            $("#test-basic").html(html);
-        })
-    });
-</script>
+<script src="js/homeLoad.js"></script>
 </body>
 </html>

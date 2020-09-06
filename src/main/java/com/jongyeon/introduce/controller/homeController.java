@@ -30,24 +30,10 @@ public class homeController {
         log.info("who is connect!:" +request.getRemoteAddr());
         portfolioService.ViewCountUp();
 
-        BasicInformation b=portfolioService.returnBasicInformation();
-        List<Education> eList=portfolioService.returnEducationList();
-        List<Certificate> ca = portfolioService.readCertificates("자격");
-        List<Certificate> cb = portfolioService.readCertificates("어학");
-        List<Certificate> cc = portfolioService.readCertificates("취득준비중");
-        List<Skills> skills = portfolioService.readSkills();
-        List<Career> careers =portfolioService.readCareers();
+
         List<Integer> viewCountList=visitedCountService.viewCount();
 
 
-
-        model.addAttribute("certificateA",ca);
-        model.addAttribute("certificateB",cb);
-        model.addAttribute("certificateC",cc);
-        model.addAttribute("basic",b);
-        model.addAttribute("eduList",eList);
-        model.addAttribute("skills",skills);
-        model.addAttribute("careers",careers);
         model.addAttribute("viewCnt",viewCountList);
 
         return "home";

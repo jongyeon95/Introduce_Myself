@@ -1,0 +1,19 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+    <div class="resume-section-content">
+        <h2 class="mb-5">학력사항</h2>
+
+        <div class="d-flex flex-column flex-md-row justify-content-between mb-5" th:each="list : ${education}">
+            <div class="flex-grow-1">
+                <h3 class="mb-0" th:text="${list.getName()}"></h3>
+                <span class="text-primary" th:text="${list.getStartTime()}+'~'">August 2006 - May 2010</span>
+                <span class="text-primary" th:text="${list.getEndTime()}!=null ? ${list.getEndTime()} : ' '"></span>
+                <div class="subheading mb-3" th:text="${list.getGrade()}!=null ? ${list.getGrade()} : ' '"></div>
+                <div th:text="${list.getMajor()}!=null ? '전공: '+${list.getMajor()} : ' '"> </div>
+                <p th:text="${list.getGpa()}!=null ? '학점: '+${list.getGpa()} : ' '"></p>
+            </div>
+            <div class="flex-shrink-0">
+            </div>
+        </div>
+
+    </div>
+</html>

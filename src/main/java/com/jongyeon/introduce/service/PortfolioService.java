@@ -62,6 +62,9 @@ public class PortfolioService {
     public List<Certificate> readCertificates(String s){
         return certificateRepository.findAllByCategoryIsOrderByTakeTime(s);
     }
+    public List<Certificate> readCertificatesAll(){
+        return certificateRepository.findAllByOrderByTakeTime();
+    }
 
     public List<Skills> readSkills(){
         return skillsRepository.findAll();
