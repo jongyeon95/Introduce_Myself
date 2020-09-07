@@ -13,6 +13,7 @@
 #### 특정 Ip 차단
 #### Email 보내기
 #### User 회원가입
+#### 프로필 이미지 변경
 
 
 ## 사용중인 기술
@@ -21,3 +22,13 @@
 #### Spring Data Jpa
 #### Thymeleaf
 #### MySql
+
+
+
+## 실제 화면 예시
+![alt](https://github.com/jongyeon95/Introduce_Myself/blob/master/readmeImage/beforeLoginMain.png)
+
+![alt](https://github.com/jongyeon95/Introduce_Myself/blob/master/readmeImage/afterLoingMain.png)
+
+![alt](https://github.com/jongyeon95/Introduce_Myself/blob/master/readmeImage/updateClick.png)
+
