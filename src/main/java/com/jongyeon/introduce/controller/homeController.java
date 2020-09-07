@@ -26,7 +26,7 @@ public class homeController {
 
     @GetMapping("/")
     public String home(Model model, HttpServletRequest request){
-        log.info("homepage");
+        log.info("Enter the homepage");
         log.info("who is connect!:" +request.getRemoteAddr());
         portfolioService.ViewCountUp();
 
@@ -38,16 +38,6 @@ public class homeController {
 
         return "home";
 
-    }
-
-    @GetMapping("/admin/test")
-    public String test(){
-        return"test";
-    }
-
-    @GetMapping("/user/login")
-    public String login(){
-        return"login";
     }
 
 }

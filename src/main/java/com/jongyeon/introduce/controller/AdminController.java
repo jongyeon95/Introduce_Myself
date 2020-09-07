@@ -29,14 +29,14 @@ public class AdminController {
 
     @GetMapping("/admin/info")
     public String ShowAdminInfo(Model model){
-        log.info("enter adminInfo");
+        log.info("Enter adminInfo");
         List<Integer> viewCountList=visitedCountService.viewCount();
 
         Optional<Account> account=accountRepository.findByAuthority("ROLE_ADMIN");
-        if(account.get()==null){
+        if(!account.isPresent()){
+            log.info("account data is null");
             return "error";
         }
-        System.out.println(account.get().getUserName());
         model.addAttribute("viewCnt",viewCountList);
         model.addAttribute("account",account);
         return "admin/adminInfo";
@@ -44,11 +44,12 @@ public class AdminController {
 
     @GetMapping("/admin/update")
     public String ChangeAdminForm(Model model){
-        log.info("enter Change Admin Info Form GetMapping");
+        log.info("Enter update admin info form");
         List<Integer> viewCountList=visitedCountService.viewCount();
 
         Optional<Account> account=accountRepository.findByAuthority("ROLE_ADMIN");
-        if(account.get()==null){
+        if(!account.isPresent()){
+            log.info("Admin Account is Null");
             return "error";
         }
 
@@ -61,17 +62,23 @@ public class AdminController {
     @ResponseBody
     @PutMapping("/admin/update/info")
     public HttpStatus UpdateAdmin(Model model, @RequestBody AccountDto accountDto){
-        log.info("PutMapping changeInfo");
-        log.info("accountDto data: "+accountDto);
+        log.info("Request change admin Info");
         Optional<Account> account=accountRepository.findById(accountDto.getIdx());
-        if(account.get()==null){
+        if(!account.isPresent()){
+            log.info("Account is null");
             return HttpStatus.BAD_REQUEST;
         }
 
         if(accountService.changeAccountInfo(accountDto)) {
+            log.info("Success Change AdminInfo");
             return HttpStatus.OK;
         }
 
         return HttpStatus.BAD_REQUEST;
+    }
+    @GetMapping("/login")
+    public String login(){
+        log.info("Enter Login Page");
+        return"login";
     }
 }

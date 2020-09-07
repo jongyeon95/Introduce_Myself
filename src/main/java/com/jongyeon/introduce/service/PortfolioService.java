@@ -3,6 +3,7 @@ package com.jongyeon.introduce.service;
 import com.jongyeon.introduce.dto.CertificateDto;
 import com.jongyeon.introduce.entity.*;
 import com.jongyeon.introduce.repository.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
 public class PortfolioService {
     @Autowired
@@ -36,15 +38,6 @@ public class PortfolioService {
         return list;
     }
 
-    public void updateBasicInformation(Long id) {
-        //todo 받아올거 생각하기
-        Optional<BasicInformation> b = basicInformationRepository.findById(id);
-        if(!b.isPresent())
-            return;
-        b.get().setContent("업데이트 되나?");
-        basicInformationRepository.save(b.get());
-
-    }
 
     public void insertCertificate(CertificateDto c){
         Certificate certificate=new Certificate().builder()
@@ -69,6 +62,7 @@ public class PortfolioService {
     public List<Skills> readSkills(){
         return skillsRepository.findAll();
     }
+
     public Optional<Skills> findByIdSkills(Long id){return skillsRepository.findById(id);}
 
     public List<Career> readCareers(){return careerRepository.findAll();}
