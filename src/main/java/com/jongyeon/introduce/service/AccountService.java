@@ -30,6 +30,7 @@ public class AccountService implements UserDetailsService {
 
     public Account createAccount(String username, String password)
     {
+        log.info("Create New Account");
         Account account = new Account();
         account.setUserName(username);
         account.setPassword(passwordEncoder.encode(password));
@@ -39,16 +40,17 @@ public class AccountService implements UserDetailsService {
     public boolean changeAccountInfo(AccountDto accountDto){
 
         if(passwordEncoder.matches(accountDto.getPw(),accountRepository.findById(accountDto.getIdx()).get().getPassword())) {
-            log.info("비밀번호 맞음");
+            log.info("password correct");
             Optional<Account> account;
             account = accountRepository.findById(accountDto.getIdx());
             account.get().setEmail(accountDto.getEmail());
             log.info(accountDto.getChagepw());
 
             if (!accountDto.getChagepw().equals("")) {
+                log.info("change Admin password");
                 account.get().setPassword(passwordEncoder.encode(accountDto.getChagepw()));
             }
-            log.info("저장");
+            log.info("change Admin info");
             accountRepository.save(account.get());
 
             return true;
