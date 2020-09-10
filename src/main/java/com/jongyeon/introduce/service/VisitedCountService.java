@@ -19,12 +19,18 @@ public class VisitedCountService {
 
         List<Integer> list=new ArrayList<>();
         Integer total=viewCountRepository.SumViewCount();
-        Integer yesterDay= Math.toIntExact(viewCountRepository.findByDateIs(LocalDate.now().minusDays(1)).get().getTodayCnt());
+        Integer yesterday;
+        if (viewCountRepository.findByDateIs(LocalDate.now().minusDays(1)).isPresent()){
+            yesterday= Math.toIntExact(viewCountRepository.findByDateIs(LocalDate.now().minusDays(1)).get().getTodayCnt());
+        }
+        else{
+            yesterday=0;
+        }
+
         Integer today= Math.toIntExact(viewCountRepository.findByDateIs(LocalDate.now()).get().getTodayCnt());
         list.add(total);
-        list.add(yesterDay);
+        list.add(yesterday);
         list.add(today);
-
 
         return list;
     }
