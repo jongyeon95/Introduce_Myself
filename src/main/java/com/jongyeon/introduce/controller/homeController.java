@@ -33,7 +33,6 @@ public class homeController {
 
         List<Integer> viewCountList=visitedCountService.viewCount();
 
-
         model.addAttribute("viewCnt",viewCountList);
 
         return "home";

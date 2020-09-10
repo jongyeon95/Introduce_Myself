@@ -1,10 +1,13 @@
 package com.jongyeon.introduce.service;
 
 import com.jongyeon.introduce.dto.BasicInformationDto;
+import com.jongyeon.introduce.dto.CertificateDto;
 import com.jongyeon.introduce.dto.SkillsDto;
 import com.jongyeon.introduce.entity.BasicInformation;
+import com.jongyeon.introduce.entity.Certificate;
 import com.jongyeon.introduce.entity.Skills;
 import com.jongyeon.introduce.repository.BasicInformationRepository;
+import com.jongyeon.introduce.repository.CertificateRepository;
 import com.jongyeon.introduce.repository.SkillsRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +25,8 @@ public class UpdatePortfolioService {
     private BasicInformationRepository basicInformationRepository;
     @Autowired
     private SkillsRepository skillsRepository;
+    @Autowired
+    private CertificateRepository certificateRepository;
 
     public HttpStatus UpdateBasicInformation(BasicInformationDto basicInformationDto){
         Optional<BasicInformation> basicInformation=basicInformationRepository.findById(basicInformationDto.getIdx());
@@ -63,5 +68,19 @@ public class UpdatePortfolioService {
         log.info("Success delete skills");
         skillsRepository.delete(skills.get());
         return HttpStatus.OK;
+    }
+
+    public HttpStatus SaveCertificate(CertificateDto certificateDto){
+        Certificate certificate = new Certificate().builder()
+                .name(certificateDto.getName())
+                .takeTime(certificateDto.getTakeTime())
+                .category(certificateDto.getCategory())
+                .className(certificateDto.getClassName())
+                .updatedTime(LocalDateTime.now())
+                .createdTime(LocalDateTime.now())
+                .issuingAgency(certificateDto.getIssuingAgency()).build();
+        certificateRepository.save(certificate);
+        return HttpStatus.OK;
+
     }
 }

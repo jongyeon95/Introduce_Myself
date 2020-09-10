@@ -67,6 +67,9 @@ public class PortfolioService {
 
     public List<Career> readCareers(){return careerRepository.findAll();}
 
+    public Optional<Certificate> findByIdCertificate(Long id){return certificateRepository.findById(id);}
+
+
     public void ViewCountUp(){
         LocalDate now =LocalDate.now();
         Optional<ViewCount> ld=viewCountRepository.findByDateIs(now);

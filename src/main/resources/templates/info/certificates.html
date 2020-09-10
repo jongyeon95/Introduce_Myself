@@ -1,10 +1,11 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <div class="resume-section-content">
-    <h2 class="mb-5">자격 및 어학</h2>
+    <h2 class="mb-5">자격 및 어학
+        <button sec:authorize="isAuthenticated()" th:onclick="'location.href='+'\'/admin/save/certificate/\''" class="btn btn-outline-info my-2 my-sm-2 btn-sm" type="submit">추가하기</button>
+    </h2>
     <ul class="fa-ul mb-5">
         <h3 class="mb-2">자격증</h3>
         <li th:each="list : ${certificate}" th:if="${list.getCategory().toString().equals('자격')}">
-
             <div  class="mb-2">
                 <span class="text-primary font-weight-bold" > 자격명: </span>
                 <span class="text-dark" th:text="${list.getName()}"></span><br>
@@ -14,6 +15,8 @@
                 <span class="text-dark" th:text="${list.getTakeTime()}"></span><br>
                 <span class="text-primary font-weight-bold" >발행기간: </span>
                 <span class="text-dark" th:text="${list.getIssuingAgency()}"></span><br>
+                <button sec:authorize="isAuthenticated()" th:onclick="'location.href='+'\'/admin/update/certificate/'+${list.getId()}+'\''" class="btn btn-outline-info my-2 my-sm-2 btn-sm" type="submit">수정하기</button>
+
 
             </div><br>
 
@@ -24,6 +27,7 @@
         <li th:each="list : ${certificate}" th:if="${list.getCategory().toString().equals('어학')}">
 
             <div  class="mb-2">
+
                 <span class="text-primary font-weight-bold" > 어학명: </span>
                 <span class="text-dark" th:text="${list.getName()}"></span><br>
                 <span class="text-primary font-weight-bold" > 등 급: </span>
@@ -32,6 +36,8 @@
                 <span class="text-dark" th:text="${list.getTakeTime()}"></span><br>
                 <span class="text-primary font-weight-bold" >발행기간: </span>
                 <span class="text-dark" th:text="${list.getIssuingAgency()}"></span><br>
+                <button sec:authorize="isAuthenticated()" th:onclick="'location.href='+'\'/admin/update/certificate/'+${list.getId()}+'\''" class="btn btn-outline-info my-2 my-sm-2 btn-sm" type="submit">수정하기</button>
+
             </div><br>
 
         </li>
@@ -42,12 +48,15 @@
         <li th:each="list : ${certificate}" th:if="${list.getCategory().toString().equals('취득준비중')}">
 
             <div  class="mb-2">
+
                 <span class="text-primary font-weight-bold" > 자격/어학명: </span>
                 <span class="text-dark" th:text="${list.getName()}"></span><br>
                 <span class="text-primary font-weight-bold" > 등 급: </span>
                 <span class="text-dark" th:text="${list.getClassName()}"></span><br>
                 <span class="text-primary font-weight-bold" >발행기간: </span>
                 <span class="text-dark" th:text="${list.getIssuingAgency()}"></span><br>
+                <button sec:authorize="isAuthenticated()" th:onclick="'location.href='+'\'/admin/update/certificate/'+${list.getId()}+'\''" class="btn btn-outline-info my-2 my-sm-2 btn-sm" type="submit">수정하기</button>
+
             </div><br>
 
         </li>

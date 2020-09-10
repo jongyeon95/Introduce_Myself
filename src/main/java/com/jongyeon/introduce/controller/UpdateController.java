@@ -1,6 +1,7 @@
 package com.jongyeon.introduce.controller;
 
 import com.jongyeon.introduce.dto.BasicInformationDto;
+import com.jongyeon.introduce.dto.CertificateDto;
 import com.jongyeon.introduce.dto.SkillsDto;
 import com.jongyeon.introduce.entity.*;
 import com.jongyeon.introduce.service.PortfolioService;
@@ -98,6 +99,45 @@ public class UpdateController {
         log.info("Request delete skills");
         return updatePortfolioService.DeleteSkills(idx);
     }
+
+    @GetMapping("/admin/save/certificate")
+    public String saveCertificateForm(Model model){
+        log.info("Enter Add certificate form");
+        Optional<Certificate> c= Optional.of(new Certificate());
+
+        List<Integer> viewCountList=visitedCountService.viewCount();
+
+
+        model.addAttribute("viewCnt",viewCountList);
+        model.addAttribute("certificate",c);
+        return "admin/updateCertificate";
+
+
+    }
+    @ResponseBody
+    @PostMapping("/admin/save/certificate")
+    public HttpStatus saveCertificate(@RequestBody CertificateDto certificateDto){
+        log.info(certificateDto.getName());
+        log.info(certificateDto.getCategory());
+        log.info(certificateDto.getClassName());
+        log.info(certificateDto.getIssuingAgency());
+        return updatePortfolioService.SaveCertificate(certificateDto);
+
+    }
+
+    @GetMapping("/admin/update/certificate/{id}")
+    public String updateCertificateForm(Model model,@PathVariable Long id){
+        log.info("Enter Update certificate form");
+        Optional<Certificate> c= portfolioService.findByIdCertificate(id);
+        List<Integer> viewCountList=visitedCountService.viewCount();
+
+        model.addAttribute("viewCnt",viewCountList);
+        model.addAttribute("certificate",c);
+        return "admin/updateCertificate";
+
+    }
+
+
 
 
 
