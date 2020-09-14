@@ -1,5 +1,6 @@
 package com.jongyeon.introduce.entity;
 
+import com.jongyeon.introduce.dto.CertificateDto;
 import lombok.*;
 
 import javax.persistence.*;
@@ -36,4 +37,14 @@ public class Certificate {
     private LocalDateTime createdTime;
 
     private LocalDateTime updatedTime;
+
+    public void setDto(CertificateDto dto){
+        this.name=dto.getName();
+        this.category=dto.getCategory();
+        this.className=dto.getClassName();
+        this.issuingAgency=dto.getIssuingAgency();
+        this.takeTime=dto.getTakeTime();
+        this.updatedTime=LocalDateTime.now();
+
+    }
 }

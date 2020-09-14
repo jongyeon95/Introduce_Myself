@@ -83,4 +83,14 @@ public class UpdatePortfolioService {
         return HttpStatus.OK;
 
     }
+
+    public HttpStatus UpdateCertificate(CertificateDto certificateDto){
+        Optional<Certificate> certificate=certificateRepository.findById(certificateDto.getIdx());
+        if(!certificate.isPresent()){
+            return HttpStatus.BAD_REQUEST;
+        }
+        certificate.get().setDto(certificateDto);
+        certificateRepository.save(certificate.get());
+        return HttpStatus.OK;
+    }
 }

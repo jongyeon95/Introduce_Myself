@@ -41,12 +41,16 @@ var main = {
         var data= {
             idx: $('#idx').val(),
             name: $('#name').val(),
+            category: $('#category').val(),
+            class_name: $('#className').val(),
+            take_time: $('#takeTime').val(),
+            issuing_agency: $('#issuingAgency').val()
         };
 
 
         $.ajax({
             type: 'PUT',
-            url: '/admin/update/skills',
+            url: '/admin/update/certificate',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data)

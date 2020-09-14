@@ -13,18 +13,15 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class CertificateDto {
 
-    @NotNull
+    private Long idx;
+
     private String name;
 
-    @NotNull
     private String className;
 
-    @NotNull
     private String category;
 
-    @NotNull
     private  String issuingAgency;
 
-    @NotNull
     private LocalDate takeTime;
 }

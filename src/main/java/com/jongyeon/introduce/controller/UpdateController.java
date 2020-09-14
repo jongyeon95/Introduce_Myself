@@ -137,6 +137,12 @@ public class UpdateController {
 
     }
 
+    @ResponseBody
+    @PutMapping("/admin/update/certificate")
+    public HttpStatus updateCertificate(@RequestBody CertificateDto certificateDto){
+        log.info("Request update certificate");
+        return updatePortfolioService.UpdateCertificate(certificateDto);
+    }
 
 
 
