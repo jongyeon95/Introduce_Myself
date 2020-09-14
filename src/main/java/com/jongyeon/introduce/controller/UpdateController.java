@@ -144,6 +144,13 @@ public class UpdateController {
         return updatePortfolioService.UpdateCertificate(certificateDto);
     }
 
+    @ResponseBody
+    @DeleteMapping("/admin/delete/certificate/{idx}")
+    public HttpStatus deleteCertificate(@PathVariable Long idx){
+        log.info("Request delete certificate");
+        return updatePortfolioService.DeleteCertificate(idx);
+    }
+
 
 
 

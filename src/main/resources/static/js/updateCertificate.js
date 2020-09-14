@@ -67,7 +67,7 @@ var main = {
 
         $.ajax({
             type: 'DELETE',
-            url: '/admin/delete/skills/'+idx,
+            url: '/admin/delete/certificate/'+idx,
             dataType: 'json',
             contentType:'application/json; charset=utf-8'
         }).done(function() {

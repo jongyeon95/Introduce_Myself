@@ -93,4 +93,14 @@ public class UpdatePortfolioService {
         certificateRepository.save(certificate.get());
         return HttpStatus.OK;
     }
+
+    public HttpStatus DeleteCertificate(Long id){
+        Optional<Certificate> certificate=certificateRepository.findById(id);
+        if(!certificate.isPresent()){
+            log.info("Not Found delete certificate");
+            return HttpStatus.OK;
+        }
+        certificateRepository.delete(certificate.get());
+        return HttpStatus.OK;
+    }
 }
