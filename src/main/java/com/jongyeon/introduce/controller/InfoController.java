@@ -18,7 +18,6 @@ public class InfoController {
 
     @GetMapping("/basic")
     public String returnBasicInformationView(Model model){
-        log.info("return BasicInformation");
         BasicInformation b=portfolioService.returnBasicInformation();
         model.addAttribute("basic",b);
         return "info/basicInformation";
@@ -26,7 +25,6 @@ public class InfoController {
 
     @GetMapping("/certificates")
     public String returnCertificateView(Model model){
-        log.info("return Certificate");
         List<Certificate> c=portfolioService.readCertificatesAll();
         model.addAttribute("certificate",c);
         return "info/certificates";
@@ -34,7 +32,6 @@ public class InfoController {
 
     @GetMapping("/education")
     public String returnEducationView(Model model){
-        log.info("return Education");
         List<Education> e=portfolioService.returnEducationList();
         model.addAttribute("education",e);
         return "info/education";
@@ -42,7 +39,6 @@ public class InfoController {
 
     @GetMapping("/skills")
     public String returnSkillsView(Model model){
-        log.info("return Skills");
         List<Skills> s=portfolioService.readSkills();
         model.addAttribute("skills",s);
         return "info/skills";
@@ -50,7 +46,6 @@ public class InfoController {
 
     @GetMapping("/careers")
     public String returnCareerView(Model model){
-        log.info("return careers");
         List<Career> c=portfolioService.readCareers();
         model.addAttribute("career",c);
         return "info/careers";

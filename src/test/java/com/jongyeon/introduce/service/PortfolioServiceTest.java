@@ -29,7 +29,6 @@ public class PortfolioServiceTest {
     }
     @Test
     public void updateBasicInfoTest(){
-        portfolioService.updateBasicInformation(1L);
     }
 
     @Test

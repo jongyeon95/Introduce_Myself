@@ -26,7 +26,6 @@ public class homeController {
 
     @GetMapping("/")
     public String home(Model model, HttpServletRequest request){
-        log.info("Enter the homepage");
         log.info("who is connect!:" +request.getRemoteAddr());
         portfolioService.ViewCountUp();
 
